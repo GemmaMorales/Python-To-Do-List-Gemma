@@ -2,23 +2,37 @@ todos = []
 stop = False
 
 def get_todos():
-    global todos
+    #global todos
     return todos
 
 def add_one_task(title):
-    # your code here
-    pass
+    todos.append(title)
+    #todos = todos + [title]
+    #print(new_list)
+    return todos
 
+    
 def print_list():
-    global todos
-    pass
+    #global todos
+    print(todos)
+    
 
 def delete_task(number_to_delete):
     # your code here
-    pass
+    if number_to_delete in todos:
+        todos.remove(number_to_delete)
+    else:
+        print(number_to_delete + " is not on the To Do list.")
+    return todos
+    #todos.pop(number_to_delete)
+
 
 def save_todos():
-    # your code here
+    import csv
+    
+    #myfile = open(todos.csv, "w")
+        #wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
+        #wr.writerow(todos)
     pass
 
     
@@ -39,9 +53,11 @@ if __name__ == '__main__':
         6. Exit
     """)
         response = input()
+        
         if response == "6":
             stop = True
         elif response == "3":
+            
             print_list()
         elif response == "2":
             print("What task number you want to delete?")
