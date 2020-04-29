@@ -1,3 +1,4 @@
+import csv
 todos = []
 stop = False
 
@@ -28,16 +29,23 @@ def delete_task(number_to_delete):
 
 
 def save_todos():
-    import csv
-    
-    #myfile = open(todos.csv, "w")
-        #wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
-        #wr.writerow(todos)
+    myFile = open("todos.csv",'w+')
+    write = csv.writer(myFile, quoting=csv.QUOTE_NONE)
+    write.writerow(todos)
     pass
 
     
 def load_todos():
     # your code here
+    global todos
+    try:
+        with open("todos.csv", newline='') as myFile:
+            reader = csv.reader(myFile)
+            for row in reader:
+                todos = row
+    except:
+        open("todos.csv", "w+")
+        load_todos()
     pass
 
 # Below this code will only run if the entry file running was app.py
